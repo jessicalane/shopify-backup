@@ -1,0 +1,55 @@
+<section class="banner-section {% unless block.settings.wide_display %}main_content_area container {% endunless %} wide_display--{{ block.settings.wide_display }}">
+  <div class="slider flexslider homepage_slider {% if block.settings.wide_display == false %}sixteen columns{% endif %}">
+    <ul class="slides">
+      <li>
+        {% if block.settings.link != blank %}
+          <a href="{{ block.settings.link }}">
+        {% endif %}
+        {% if block.settings.image != nil %}
+          <img  src="{{ block.settings.image | img_url: '1200x' }}"
+                alt="{{ block.settings.image.alt | escape }}"
+                class="lazyload transition-in"
+                sizes="100vw"
+                srcset="{{ block.settings.image | img_url: '480x' }} 480w,
+                        {{ block.settings.image | img_url: '768x' }} 768w,
+                        {{ block.settings.image | img_url: '1200x' }} 1200w,
+                        {{ block.settings.image | img_url: '2048x2048' }} 2048w"
+                 />
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg placeholder-svg--banner' }}
+        {% endif %}
+
+        {% if block.settings.link != blank %}
+          </a>
+        {% endif %}
+        {% if block.settings.image != blank or block.settings.title != blank or block.settings.subtext != blank or block.settings.button_label != blank %}
+          <div class="flex-caption">
+            <div class="container">
+              <div class="columns {% if block.settings.text_position == 'left' %} nine offset-by-one {% elsif block.settings.text_position == 'right' %} eight offset-by-seven {% else %} ten offset-by-three {% endif %} align_{{ block.settings.text_align }}">
+                {% if block.settings.title != blank %}
+                  <h1 class="headline">
+                    {{ block.settings.title | escape }}
+                  </h1>
+                {% else %}
+                  <h1 class="headline">
+                    {{ page.title }}
+                  </h1>
+                {% endif %}
+                {% if block.settings.subtext != blank %}
+                  <div class="subtitle">
+                    {{ block.settings.subtext }}
+                  </div>
+                {% endif %}
+                {% if block.settings.button_label != blank %}
+                  <a {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %} class="action_button {% if block.button_style == 'solid' %}action_button_solid{% endif %}">
+                    {{ block.settings.button_label | escape }}
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </li>
+    </ul>
+  </div>
+</section>

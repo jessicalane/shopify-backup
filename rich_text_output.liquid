@@ -1,0 +1,21 @@
+{% if block.settings.gray_background == true %}
+    <div class="homepage_content clearfix">
+{% endif %}
+
+    <div class="container">
+        <div class="sixteen columns">
+            <div style="text-align: {{ block.settings.paragraph_text_alignment }};">
+                {% if block.settings.title != blank %}
+                    <h2 class="title">
+                        {{ block.settings.title | escape }}
+                    </h2>
+                {% endif %}
+
+                {{ block.settings.added_text}}
+            </div>
+
+        </div>  
+    </div>
+{% if block.settings.gray_background == true %}
+    </div>
+{% endif %}
